@@ -25,12 +25,6 @@ userSchema.set('toObject', {
     delete ret.password;
   }
 });
-// userSchema.methods.serialize = function() {
-//   return {
-//     username: this.username || "",
-//     email: this.email || ""
-//   };
-// };
 
 userSchema.methods.validatePassword = function (password) {
   return bcrypt.compare(password, this.password);
