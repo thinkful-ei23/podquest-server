@@ -1,18 +1,18 @@
 {
-  "name": "thinkful-backend-template",
+  "name": "podquest-backend",
   "version": "1.0.0",
   "description": "Template for an Express backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon server.js",
     "mocha": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js'",
     "mocha-exit0": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js' || true",
     "test": "nodemon --exec npm run mocha-exit0",
     "cover": "nodemon --exec nyc --reporter=lcov --reporter=text-summary npm run mocha-exit0",
-    "heroku": "node index.js",
+    "heroku": "node server.js",
     "travis": "npm run mocha"
   },
-  "author": "Joe Turner <jturner@thinkful.com>",
+  "author": "Chris G, Clinten Owen, Kathy LeBoeuf, Shelly Leung, John C",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.4",
