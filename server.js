@@ -10,6 +10,7 @@ const passport = require('passport');
 const { localStrategy, jwtStrategy } = require('./passport/strategies');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const podcastRouter = require('./routes/podcast');
 
 // const {dbConnect} = require('./db-knex');
 
@@ -33,6 +34,7 @@ passport.use(jwtStrategy);
 // Mounting routes
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/podcast', podcastRouter);
 
 function runServer(port = PORT) {
   const server = app
