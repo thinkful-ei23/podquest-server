@@ -37,24 +37,25 @@ const getXML = url => {
 router.post('/', (req, res, next) => {
 	const { feedUrl } = req.body;
 
-	getXML(feedUrl)
-		.then(data => {
-			const channel = data.rss.channel[0];
-			// console.log('channel', channel);
-			const channelInfo = {
-				title: channel.title[0],
-				author: channel['itunes:author'][0],
-				description: channel.description[0],
-				genres: channel['itunes:category'].map(cat => cat.$.text),
-				episodes: channel.item,
-				link: channel.link[0]
-			};
-			// console.log('channelInfo', channelInfo);
-			res.json(channelInfo);
-		})
-		.catch(err => {
-			next(err);
-		});
+  getXML(feedUrl)
+    .then(data => {
+      const channel = data.rss.channel[0];
+      // console.log('channel', channel);
+      const channelInfo = {
+        title: channel.title[0],
+        author: channel['itunes:author'][0],
+        description: channel.description[0],
+        genres: channel['itunes:category'].map(cat => cat.$.text),
+        episodes: channel.item,
+        link: channel.link[0],
+        image: channel['itunes:image'][0].$.href
+      };
+      // console.log('channelInfo', channelInfo);
+      res.json(channelInfo);
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;
