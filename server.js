@@ -11,6 +11,11 @@ const { localStrategy, jwtStrategy } = require('./passport/strategies');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const podcastRouter = require('./routes/podcast');
+<<<<<<< HEAD
+=======
+const favoriteRouter = require('./routes/favorite');
+
+>>>>>>> favorites
 // const {dbConnect} = require('./db-knex');
 
 const app = express();
@@ -37,6 +42,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: tr
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/podcast',jwtAuth, podcastRouter);
+app.use('/api/favorite', jwtAuth, favoriteRouter);
 
 /*=======Custom 404 Not Found route handler=======*/
 app.use((req, res, next) => {
