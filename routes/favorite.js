@@ -25,10 +25,25 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const { feedUrl, guid } = req.body;
+  const { feedUrl, title, guid } = req.body;
   const userId = req.user.id;
+  if(!feedUrl) {
+    const err = new Error('Missing feedUrl in req body');
+    err.status = 400;
+    return next(err);
+  }
+  if(!title) {
+    const err = new Error('Missing title in req body');
+    err.status = 400;
+    return next(err);
+  }
+  if(!guid) {
+    const err = new Error('Missing guid in req body');
+    err.status = 400;
+    return next(err);
+  }
 
-  const saveFav = { feedUrl, guid, userId };
+  const saveFav = { feedUrl, title, guid, userId };
 
   Favorite.create(saveFav)
     .then(results =>

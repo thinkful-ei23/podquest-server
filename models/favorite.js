@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const favoriteSchema = new mongoose.Schema({
   feedUrl: { type: String, required: true },
+  title: { type: String, required: true },
   guid: { type: String, required: true, unique: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
