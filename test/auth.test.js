@@ -13,6 +13,9 @@ const {User} = require('../models/user');
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+process.env.NODE_ENV = 'test';
+
+
 describe('Noteful API - Login', function () {
 
   let token;
