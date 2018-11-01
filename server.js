@@ -11,6 +11,7 @@ const { localStrategy, jwtStrategy } = require('./passport/strategies');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const podcastRouter = require('./routes/podcast');
+const favoriteRouter = require('./routes/favorite');
 
 // const {dbConnect} = require('./db-knex');
 
@@ -35,6 +36,7 @@ passport.use(jwtStrategy);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/podcast', podcastRouter);
+app.use('/api/favorite', favoriteRouter);
 
 function runServer(port = PORT) {
   const server = app
