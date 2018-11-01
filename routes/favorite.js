@@ -11,7 +11,8 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
   const userId = req.user.id;
-  console.log('userId', userId);
+  console.log(req.userId)
+
   Favorite.find({userId}).sort({updatedAt: 'desc'})
     .then(results => {
       res.json(results);
@@ -51,9 +52,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
-  console.log('id', id);
   const userId = req.user.id;
-  console.log('userId', userId);
   if(!mongoose.Types.ObjectId.isValid(id)) {
     const err = new Error('The "id" is not valid');
     err.status = 400;
