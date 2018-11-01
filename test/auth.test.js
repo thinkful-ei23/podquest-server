@@ -54,7 +54,6 @@ describe('Noteful API - Login', function () {
           expect(res.body).to.be.an('object');
           expect(res.body.authToken).to.be.a('string');
           const payload = jwt.verify(res.body.authToken, JWT_SECRET);
-          expect(payload.user).to.have.property('password');
           expect(payload.user.username).to.deep.equal(username);
         });
     });

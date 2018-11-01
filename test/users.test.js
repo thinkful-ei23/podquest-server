@@ -57,7 +57,7 @@ describe('podQuest API Users',function (){
             })
             .then(user => {
                 expect(user).to.exist;
-                expect(user.id).to.equal(res.body._id);
+                expect(user.id).to.equal(res.body.id);
                 expect(user.firstName).to.equal(testUser.firstName);
                 return user.validatePassword(password);
             })
