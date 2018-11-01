@@ -76,7 +76,6 @@ describe('podQuest API - podcast',function(){
             .send({feedUrl})
             .then(_res =>{
                 res = _res
-                console.log(res.body)
 
                 expect(res.body).to.be.an('object')
                 expect(res.status).to.equal(401)

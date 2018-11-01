@@ -63,7 +63,35 @@ describe('Noteful API - Login', function () {
         .send({ username: 'wrongUsername', password: 'password' })
         .then(res => {
           expect(res).to.have.status(401);
+          expect(res.error.text).to.equal('Unauthorized')
         });
+    });
+    it('Should reject requests with no username',function(){
+      return chai.request(app)
+      .post('/api/auth/login')
+      .send({ username: '', password: 'password' })
+      .then(res => {
+        expect(res).to.have.status(400)
+        expect(res.error.text).to.equal('Bad Request')
+      });
+    });
+    it('Should reject requests with wrong password',function(){
+      return chai.request(app)
+      .post('/api/auth/login')
+      .send({ username, password: 'password' })
+      .then(res => {
+        expect(res).to.have.status(401)
+        expect(res.error.text).to.equal('Unauthorized')
+      });
+    });
+    it('Should reject requests with no password',function(){
+      return chai.request(app)
+      .post('/api/auth/login')
+      .send({ username, password: '' })
+      .then(res => {
+        expect(res).to.have.status(400)
+        expect(res.error.text).to.equal('Bad Request')
+      });
     });
   });
 
