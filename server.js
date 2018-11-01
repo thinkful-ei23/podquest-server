@@ -11,11 +11,8 @@ const { localStrategy, jwtStrategy } = require('./passport/strategies');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const podcastRouter = require('./routes/podcast');
-<<<<<<< HEAD
-=======
 const favoriteRouter = require('./routes/favorite');
 
->>>>>>> favorites
 // const {dbConnect} = require('./db-knex');
 
 const app = express();
