@@ -41,7 +41,6 @@ router.post('/', (req, res, next) => {
   getXML(feedUrl)
     .then(data => {
       const channel = data.rss.channel[0];
-      // console.log('channel', channel);
       const channelInfo = {
         title: channel.title[0],
         author: channel['itunes:author'][0],
@@ -51,7 +50,6 @@ router.post('/', (req, res, next) => {
         link: channel.link[0],
         image: channel['itunes:image'][0].$.href
       };
-      // console.log('channelInfo', channelInfo);
       res.json(channelInfo);
     })
     .catch(err => {
