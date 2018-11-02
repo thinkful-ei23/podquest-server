@@ -47,7 +47,8 @@ router.post('/', (req, res, next) => {
         genres: channel['itunes:category'].map(cat => cat.$.text),
         episodes: channel.item,
         link: channel.link[0],
-        image: channel['itunes:image'][0].$.href
+        image: channel['itunes:image'][0].$.href,
+        feedUrl
       };
       res.json(channelInfo);
     })
