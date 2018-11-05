@@ -49,17 +49,11 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.delete('/:id', (req, res, next) => {
-  const id = req.params.id;
-  console.log('id', id);
+router.delete('/', (req, res, next) => {
+  const title = req.body.title;
   const userId = req.user.id;
-  console.log('userId', userId);
-  if(!mongoose.Types.ObjectId.isValid(id)) {
-    const err = new Error('The "id" is not valid');
-    err.status = 400;
-    return next(err);
-  }
-  Favorite.findOneAndRemove({_id: id, userId})
+
+  Favorite.findOneAndRemove({title, userId})
     .then(() => {
       res.status(204).end();
     })
