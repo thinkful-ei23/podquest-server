@@ -1,8 +1,8 @@
 'use strict';
 
 const express = require('express');
-const mongoose = require('mongoose');
-const passport = require('passport');
+// const mongoose = require('mongoose');
+// const passport = require('passport');
 const router = express.Router();
 
 const Favorite = require('../models/favorite');
@@ -11,7 +11,6 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
   const userId = req.user.id;
-  console.log('userId', userId);
   Favorite.find({userId}).sort({updatedAt: 'desc'})
     .then(results => {
       res.json(results);
