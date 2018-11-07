@@ -1,0 +1,16 @@
+const mongoose = require('mongoose');
+
+const subscribeSchema = new mongoose.Schema({
+	subChannel: { type: String },
+	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+});
+
+subscribeSchema.set('toObject', {
+	virtuals: true,
+	versionKey: false,
+	transform: (doc, ret) => {
+		delete ret._id;
+	}
+});
+
+module.exports = mongoose.model('Subscribe', subscribeSchema);
