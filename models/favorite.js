@@ -10,6 +10,7 @@ const favoriteSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
+favoriteSchema.set('autoIndex', false);
 favoriteSchema.index({ guid: 1, userId: 1 }, { unique: true });
 
 favoriteSchema.set('timestamps', true);
