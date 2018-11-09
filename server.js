@@ -12,6 +12,7 @@ const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const podcastRouter = require('./routes/podcast');
 const favoriteRouter = require('./routes/favorite');
+const subscribeRouter = require('./routes/subscribe');
 
 // const {dbConnect} = require('./db-knex');
 
@@ -33,30 +34,34 @@ app.use(express.json());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: true });
+const jwtAuth = passport.authenticate('jwt', {
+	session: false,
+	failWithError: true
+});
 
 // Mounting routes
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/podcast',jwtAuth, podcastRouter);
+app.use('/api/podcast', jwtAuth, podcastRouter);
 app.use('/api/favorite', jwtAuth, favoriteRouter);
+app.use('/api/subscribe', jwtAuth, subscribeRouter);
 
 /*=======Custom 404 Not Found route handler=======*/
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	const err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 /*==========Custom Error Handler==========*/
 app.use((err, req, res, next) => {
-  if (err.status) {
-    const errBody = Object.assign({}, err, { message: err.message });
-    res.status(err.status).json(errBody);
-  } else {
-    console.error(err);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+	if (err.status) {
+		const errBody = Object.assign({}, err, { message: err.message });
+		res.status(err.status).json(errBody);
+	} else {
+		console.error(err);
+		res.status(500).json({ message: 'Internal Server Error' });
+	}
 });
 
 function runServer(port = PORT) {
