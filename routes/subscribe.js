@@ -30,4 +30,18 @@ router.get('/', (req, res, next) => {
 		.catch(err => next(err));
 });
 
+router.delete('/', (req, res, next) => {
+	const userId = req.user.id;
+	const { title } = req.body;
+	let updateSub = { title };
+
+	Subscription.findOneAndRemove({ updateSub, userId })
+		.then(() => {
+			res.send({ status: 204 });
+		})
+		.catch(err => {
+			next(err);
+		});
+});
+
 module.exports = router;
