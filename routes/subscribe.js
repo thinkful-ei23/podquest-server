@@ -32,10 +32,8 @@ router.get('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
 	const userId = req.user.id;
-	const { title } = req.body;
-	let updateSub = { title };
-
-	Subscription.findOneAndRemove({ updateSub, userId })
+	const  title  = req.body.title;
+	Subscription.findOneAndRemove({ title, userId })
 		.then(() => {
 			res.send({ status: 204 });
 		})
