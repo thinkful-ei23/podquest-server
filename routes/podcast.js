@@ -39,6 +39,15 @@ router.post('/', (req, res, next) => {
   
   getXML(feedUrl)
     .then(data => {
+      // console.log('data', JSON.stringify(data));
+      if (!data || !data.rss) {
+        return res.status(404).json({
+          code: 404,
+          reason: 'RSSError',
+          message: `RSS Feed not found for ${feedUrl}`,
+          location: feedUrl
+        });
+      }
       const channel = data.rss.channel[0];
       // console.log('channel', channel);
 
@@ -63,6 +72,14 @@ router.post('/', (req, res, next) => {
       res.json(channelInfo);
     })
     .catch(err => {
+      if (err.code === 'ECONNREFUSED') {
+        return res.status(404).json({
+          code: 404,
+          reason: 'RSSError',
+          message: `RSS Feed not found for ${feedUrl}`,
+          location: feedUrl
+        });
+      }
       next(err);
     });
 });
