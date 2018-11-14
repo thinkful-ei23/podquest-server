@@ -32,6 +32,7 @@ router.get('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
 	const userId = req.user.id;
+	console.log(req.body);
 	const { title } = req.body;
 	let updateSub = { title };
 
