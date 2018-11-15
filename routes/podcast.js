@@ -72,7 +72,7 @@ router.post('/', (req, res, next) => {
       res.json(channelInfo);
     })
     .catch(err => {
-      if (err.code === 'ECONNREFUSED') {
+      if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
         return res.status(404).json({
           code: 404,
           reason: 'RSSError',
