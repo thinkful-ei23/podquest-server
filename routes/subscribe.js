@@ -8,6 +8,18 @@ router.post('/', (req, res, next) => {
 	const userId = req.user.id;
 	const subscription = { title, feedUrl, userId };
 
+	if (!feedUrl) {
+		const err = new Error('Missing feedUrl');
+		err.status = 422;
+		return next(err);
+	}
+
+	if (!title) {
+		const err = new Error('Missing title in request');
+		err.status = 422;
+		return next(err);
+	}
+
 	Subscription.create(subscription)
 		.then(result =>
 			res
@@ -30,7 +42,7 @@ router.get('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
 	const userId = req.user.id;
-	const  title  = req.body.title;
+	const title = req.body.title;
 	Subscription.findOneAndRemove({ title, userId })
 		.then(() => {
 			res.send({ status: 204 });
@@ -41,4 +53,3 @@ router.delete('/', (req, res, next) => {
 });
 
 module.exports = router;
-
