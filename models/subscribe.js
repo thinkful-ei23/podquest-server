@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const subscribeSchema = new mongoose.Schema({
-	title: { type: String, require: true, unique: true },
+	title: { type: String, require: true},
 	feedUrl: { type: String, require: true },
 	userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
+
+subscribeSchema.set('autoIndex', false);
+subscribeSchema.index({ feedUrl: 1, userId: 1 }, { unique: true });
+
 
 subscribeSchema.set('toObject', {
 	virtuals: true,

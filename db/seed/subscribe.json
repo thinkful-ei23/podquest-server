@@ -1,0 +1,12 @@
+[
+    {
+        "title":"stuff" ,
+        "feedUrl": "www.stuff.com",
+        "userId": "1"
+    },
+    {
+        "title":"stuff2" ,
+        "feedUrl": "www.stuff2.com",
+        "userId": "1"
+    }
+]

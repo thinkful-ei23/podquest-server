@@ -1,0 +1,16 @@
+[
+    {  
+        "feedUrl": "www.stuff.com",
+    "title": "stuff",
+    "mediaUrl": "ep1.mp3",
+    "guid": "guId",
+    "userId": "1"
+    },
+    {  
+        "feedUrl": "www.stuff2.com",
+        "title": "stuff2",
+        "mediaUrl": "ep2.mp3",
+        "guid": "guId2",
+        "userId": "1"
+    }
+]

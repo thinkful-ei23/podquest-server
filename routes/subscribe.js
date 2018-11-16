@@ -33,10 +33,8 @@ router.post('/', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
 	const userId = req.user.id;
-	console.info(req.user.id);
 	Subscription.find({ userId })
 		.then(results => {
-			console.info(results);
 			res.json(results);
 		})
 		.catch(err => next(err));
