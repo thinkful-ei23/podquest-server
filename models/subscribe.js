@@ -7,7 +7,7 @@ const subscribeSchema = new mongoose.Schema({
 });
 
 subscribeSchema.set('autoIndex', false);
-subscribeSchema.index({ title: 1, userId: 1 }, { unique: true });
+subscribeSchema.index({ feedUrl: 1, userId: 1 }, { unique: true });
 
 
 subscribeSchema.set('toObject', {
