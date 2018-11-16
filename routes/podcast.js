@@ -57,7 +57,7 @@ router.post('/', (req, res, next) => {
       const genres = channel['itunes:category'] ? channel['itunes:category'].map(cat => cat.$.text) : null;
       const episodes = channel.item ? channel.item : null;
       const link = channel.link ? channel.link[0] : null;
-      const image = channel['itunes:image'] ? channel['itunes:image'][0].$.href : null;
+      const image = channel['itunes:image'] ? channel['itunes:image'][0].$.href.replace('http://', 'https://') : null;
 
       const channelInfo = {
         title,
