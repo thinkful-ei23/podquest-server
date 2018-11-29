@@ -2,6 +2,7 @@
 
 [Demo podQuest Here](https://podquest-app.herokuapp.com/)
 
+link to [Client](https://github.com/thinkful-ei23/podquest-client)
 
 ## Summary
 PodQuest will never give up and never surrender.
