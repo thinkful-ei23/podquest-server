@@ -1,4 +1,4 @@
-# podQuest - CLIENT
+# podQuest - Server
 
 [Demo podQuest Here](https://podquest-app.herokuapp.com/)
 
